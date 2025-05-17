@@ -174,9 +174,10 @@ const About = () => {
             </Box>
             <AboutText sx={{ color: isLight ? '#222' : theme.palette.text.primary }}>
               <p>Sou Psicólogo Clínico formado pela Universidade Luterana do Brasil (ULBRA) - Torres/RS, com registro no Conselho Regional de Psicologia do Rio Grande do Sul (CRP 07/42111).</p>
+              <p>Especialista em desenvolvimento infantil pela UNESC.</p>
               <p>Atuo na área clínica, oferecendo atendimento psicológico individual para adultos, adolescentes e crianças, com foco em questões emocionais, comportamentais e desenvolvimento pessoal.</p>
               <p>Ofereço um espaço seguro e acolhedor para que você possa explorar suas questões emocionais, desenvolver autoconhecimento e estratégias para lidar com os desafios da vida.</p>
-              <p>Especialista em atendimento presencial em Torres/RS e online para todo o Brasil e brasileiros no exterior.</p>
+              <p>Atendimento presencial em Torres/RS e online.</p>
             </AboutText>
           </Grid>
         </Grid>

@@ -20,6 +20,10 @@ const HeroSection = styled(Box)(({ theme }) => ({
     padding: theme.spacing(8, 2, 4, 2),
     minHeight: '60vh',
   },
+  [theme.breakpoints.down('sm')]: {
+    padding: theme.spacing(4, 1, 2, 1),
+    minHeight: '50vh',
+  },
 }));
 
 const HeroContent = styled(Box)(({ theme }) => ({
@@ -29,6 +33,9 @@ const HeroContent = styled(Box)(({ theme }) => ({
   padding: theme.spacing(6, 2, 6, 2),
   [theme.breakpoints.down('md')]: {
     padding: theme.spacing(3, 0, 3, 0),
+  },
+  [theme.breakpoints.down('sm')]: {
+    padding: theme.spacing(2, 0, 2, 0),
   },
 }));
 
@@ -84,7 +91,20 @@ const Hero = () => {
       />
       <HeroContent sx={{ position: 'relative', zIndex: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 2, flexWrap: 'wrap' }}>
-          <Typography variant="h2" sx={{ color: '#566542', fontWeight: 800, letterSpacing: 1, fontFamily: 'serif', mb: 0, lineHeight: 1 }}>
+          <Typography 
+            variant="h2" 
+            sx={{ 
+              color: '#566542', 
+              fontWeight: 800, 
+              letterSpacing: 1, 
+              fontFamily: 'serif', 
+              mb: 0, 
+              lineHeight: 1,
+              fontSize: { xs: 32, sm: 40, md: 56 },
+              textAlign: { xs: 'center', sm: 'center', md: 'center' },
+              wordBreak: 'break-word',
+            }}
+          >
             Cristian Hendler
           </Typography>
           <CRPBadge>
@@ -103,20 +123,21 @@ const Hero = () => {
             background: isLight ? '#566542' : theme.palette.primary.main,
             color: isLight ? '#fff' : '#1f301d',
             fontWeight: 800,
-            fontSize: 22,
-            px: 7,
-            py: 2.5,
+            fontSize: { xs: 16, sm: 18, md: 22 },
+            px: { xs: 3, sm: 5, md: 7 },
+            py: { xs: 1.5, sm: 2, md: 2.5 },
             borderRadius: 10,
             boxShadow: isLight ? '0 8px 32px rgba(86,101,66,0.18)' : '0 8px 32px rgba(86,101,66,0.18)',
             mt: 4,
             letterSpacing: 1,
             transition: 'background 0.2s, transform 0.2s',
+            minWidth: 0,
             '&:hover': {
               background: isLight ? '#3d472e' : theme.palette.primary.dark,
               transform: 'scale(1.04)',
             },
           }}
-          startIcon={<WhatsAppIcon sx={{ fontSize: 28 }} />}
+          startIcon={<WhatsAppIcon sx={{ fontSize: { xs: 22, sm: 24, md: 28 } }} />}
           href="https://wa.me/5551996024420?text=Olá! Gostaria de agendar uma consulta."
           target="_blank"
           aria-label="Agende sua consulta pelo WhatsApp"
@@ -125,7 +146,7 @@ const Hero = () => {
         </Button>
       </HeroContent>
       <LogoDecorativo src={logoCris} alt="Logo PsicoCris" />
-      <svg viewBox="0 0 1440 180" width="100%" height="180" style={{ display: 'block', position: 'absolute', left: 0, bottom: 0, zIndex: 2 }} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <svg viewBox="0 0 1440 180" width="100%" height="100" style={{ display: 'block', position: 'absolute', left: 0, bottom: 0, zIndex: 2 }} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
         <path d="M0,80 C360,180 1080,0 1440,100 L1440,180 L0,180 Z" fill={isLight ? '#f5f5f5' : '#1f301d'} />
       </svg>
     </HeroSection>

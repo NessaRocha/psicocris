@@ -44,9 +44,7 @@ const TerapiaIndividual = () => {
             Benefícios da Psicoterapia Individual
           </Typography>
           <NoBulletList>
-            <li>Avaliação psicológica completa e personalizada</li>
             <li>Tratamento focado nas necessidades específicas do paciente</li>
-            <li>Abordagem Cognitivo-Comportamental (TCC)</li>
             <li>Desenvolvimento de estratégias de enfrentamento</li>
             <li>Acompanhamento contínuo e progressivo</li>
             <li>Melhora na qualidade de vida e bem-estar</li>

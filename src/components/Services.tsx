@@ -57,9 +57,7 @@ const Services = () => {
       title: 'Psicoterapia Individual',
       description: 'Caminhos para o autoconhecimento e equilíbrio emocional.',
       details: [
-        'Avaliação psicológica completa',
         'Tratamento personalizado',
-        'Abordagem Cognitivo-Comportamental',
         'Desenvolvimento de estratégias de enfrentamento',
         'Acompanhamento contínuo'
       ],
@@ -71,7 +69,6 @@ const Services = () => {
       description: 'Apoio emocional para enfrentar desafios da adolescência.',
       details: [
         'Avaliação do desenvolvimento',
-        'Orientação vocacional',
         'Gestão de emoções',
         'Desenvolvimento de habilidades sociais',
         'Apoio familiar'

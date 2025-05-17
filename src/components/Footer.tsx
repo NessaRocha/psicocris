@@ -1,4 +1,4 @@
-import { Box, Typography, Link, IconButton } from '@mui/material';
+import { Box, Typography, Link, IconButton, Grid } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -23,69 +23,54 @@ const Footer = () => {
         py: 4,
         px: 2,
         mt: 8,
-        textAlign: 'center',
+        textAlign: { xs: 'center', md: 'left' },
       }}
     >
-      {/* Seção de emergência e crise */}
-      <Box sx={{ mb: 4, textAlign: 'left', maxWidth: 700, mx: 'auto' }}>
-        <Typography variant="subtitle2" sx={{ color: '#fff', fontWeight: 700, letterSpacing: 1, mb: 1 }}>
-          INFORMAÇÕES DE EMERGÊNCIA E CRISE
-        </Typography>
-        <Typography sx={{ color: '#fff', mb: 1 }}>
-          Se você ou alguém que você conhece estiver passando por uma emergência ou crise e precisar de ajuda imediata, ligue para o 911 ou vá ao pronto-socorro mais próximo.
-        </Typography>
-        <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
-          <IconButton href="https://www.instagram.com/psicocrishendler/" target="_blank" rel="noopener" sx={{ color: '#fff' }} aria-label="Instagram">
-            <InstagramIcon />
-          </IconButton>
-          <IconButton href="https://facebook.com/" target="_blank" rel="noopener" sx={{ color: '#fff' }} aria-label="Facebook">
-            <FacebookIcon />
-          </IconButton>
-          <IconButton href="https://www.linkedin.com/in/cristian-hendler-48983152/" target="_blank" rel="noopener" sx={{ color: '#fff' }} aria-label="LinkedIn">
-            <LinkedInIcon />
-          </IconButton>
-          <IconButton href="https://wa.me/5551996024420" target="_blank" rel="noopener" sx={{ color: '#fff' }} aria-label="WhatsApp">
-            <WhatsAppIcon />
-          </IconButton>
-        </Box>
-      </Box>
-      <Typography variant="subtitle1" sx={{ fontWeight: 700, color: '#e9e6e1' }}>
-        Psicólogo Cristian Hendler &nbsp;|&nbsp; CRP 07/42111
-      </Typography>
-      <Box sx={{ mt: 1, mb: 2 }}>
-        <Link href="#home" color="#e9e6e1" underline="hover" sx={{ mx: 1, fontWeight: 500, background: 'none', backgroundColor: 'transparent' }}>Início</Link>
-        <Link href="#about" color="#e9e6e1" underline="hover" sx={{ mx: 1, fontWeight: 500, background: 'none', backgroundColor: 'transparent' }}>Sobre</Link>
-        <Link href="#services" color="#e9e6e1" underline="hover" sx={{ mx: 1, fontWeight: 500, background: 'none', backgroundColor: 'transparent' }}>Serviços</Link>
-        <Link href="#contact" color="#e9e6e1" underline="hover" sx={{ mx: 1, fontWeight: 500, background: 'none', backgroundColor: 'transparent' }}>Contato</Link>
-      </Box>
-      <Box sx={{ mb: 1 }}>
-        <Typography variant="body2" sx={{ color: '#e9e6e1', opacity: 0.85, fontWeight: 500, background: 'none', backgroundColor: 'transparent' }}>
-          by Vanessa Rocha
-        </Typography>
-      </Box>
-      <Box sx={{ mb: 2 }}>
-        <IconButton
-          href="https://www.instagram.com/psicocrishendler/"
-          target="_blank"
-          rel="noopener"
-          sx={{ color: '#e9e6e1', mx: 1, '&:hover': { color: '#25D366' } }}
-          aria-label="Instagram"
-        >
-          <InstagramIcon />
-        </IconButton>
-        <IconButton
-          href="https://wa.me/5551996024420"
-          target="_blank"
-          rel="noopener"
-          sx={{ color: '#e9e6e1', mx: 1, '&:hover': { color: '#25D366' } }}
-          aria-label="WhatsApp"
-        >
-          <WhatsAppIcon />
-        </IconButton>
-      </Box>
-      <Typography variant="body2" sx={{ color: '#e9e6e1', opacity: 0.8 }}>
-        © 2025 Cristian Hendler. Todos os direitos reservados.
-      </Typography>
+      <Grid container spacing={4} sx={{ maxWidth: 1200, mx: 'auto' }}>
+        {/* Coluna Esquerda */}
+        <Grid item xs={12} md={6}>
+          <Box sx={{ mb: { xs: 3, md: 0 }, textAlign: 'center' }}>
+            <Typography variant="subtitle2" sx={{ color: '#fff', fontWeight: 700, letterSpacing: 1, mb: 1 }}>
+              INFORMAÇÕES DE EMERGÊNCIA E CRISE
+            </Typography>
+            <Typography sx={{ color: '#fff', mb: 1 }}>
+              Se você ou alguém que você conhece estiver passando por uma emergência ou crise e precisar de ajuda imediata, ligue para o 911 ou vá ao pronto-socorro mais próximo.
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 2, mt: 1, justifyContent: 'center' }}>
+              <IconButton href="https://www.instagram.com/psicocrishendler/" target="_blank" rel="noopener" sx={{ color: '#fff' }} aria-label="Instagram">
+                <InstagramIcon />
+              </IconButton>
+              <IconButton href="https://facebook.com/" target="_blank" rel="noopener" sx={{ color: '#fff' }} aria-label="Facebook">
+                <FacebookIcon />
+              </IconButton>
+              <IconButton href="https://www.linkedin.com/in/cristian-hendler-48983152/" target="_blank" rel="noopener" sx={{ color: '#fff' }} aria-label="LinkedIn">
+                <LinkedInIcon />
+              </IconButton>
+              <IconButton href="https://wa.me/5551996024420" target="_blank" rel="noopener" sx={{ color: '#fff' }} aria-label="WhatsApp">
+                <WhatsAppIcon />
+              </IconButton>
+            </Box>
+          </Box>
+        </Grid>
+        {/* Coluna Direita */}
+        <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+          <Typography variant="subtitle1" sx={{ fontWeight: 700, color: '#e9e6e1' }}>
+            Psicólogo Cristian Hendler &nbsp;|&nbsp; CRP 07/42111
+          </Typography>
+          <Box sx={{ mt: 1, mb: 2 }}>
+            <Link href="#home" color="#e9e6e1" underline="hover" sx={{ mx: 1, fontWeight: 500, background: 'none', backgroundColor: 'transparent' }}>Início</Link>
+            <Link href="#about" color="#e9e6e1" underline="hover" sx={{ mx: 1, fontWeight: 500, background: 'none', backgroundColor: 'transparent' }}>Sobre</Link>
+            <Link href="#services" color="#e9e6e1" underline="hover" sx={{ mx: 1, fontWeight: 500, background: 'none', backgroundColor: 'transparent' }}>Serviços</Link>
+            <Link href="#contact" color="#e9e6e1" underline="hover" sx={{ mx: 1, fontWeight: 500, background: 'none', backgroundColor: 'transparent' }}>Contato</Link>
+          </Box>
+          <Typography variant="body2" sx={{ color: '#e9e6e1', opacity: 0.8 }}>
+            © 2025 Cristian Hendler. Todos os direitos reservados.
+          </Typography>
+          <Typography variant="caption" sx={{ color: '#e9e6e1', opacity: 0.6, display: 'block', textAlign: 'center', mt: 1 }}>
+            by <a href="https://www.instagram.com/vanessarochadeveloper/?next=%2F" target="_blank" rel="noopener noreferrer" style={{ color: '#e9e6e1', opacity: 0.7, textDecoration: 'underline', fontWeight: 500 }}>Vanessa Rocha</a>
+          </Typography>
+        </Grid>
+      </Grid>
     </Box>
   );
 }
