@@ -55,6 +55,10 @@ const ImageWrapper = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  [theme.breakpoints.down('sm')]: {
+    width: 220,
+    height: 220,
+  },
 }));
 
 const GeometricDetail = styled(Box)(({ theme }) => ({
@@ -67,6 +71,12 @@ const GeometricDetail = styled(Box)(({ theme }) => ({
   background: theme.palette.mode === 'light' ? '#B7C9A8' : '#566542',
   zIndex: 1,
   boxShadow: '0 4px 24px rgba(86,101,66,0.08)',
+  [theme.breakpoints.down('sm')]: {
+    width: 140,
+    height: 140,
+    top: -8,
+    left: -8,
+  },
 }));
 
 const GeometricDetail2 = styled(Box)(({ theme }) => ({
@@ -79,9 +89,15 @@ const GeometricDetail2 = styled(Box)(({ theme }) => ({
   background: theme.palette.mode === 'light' ? '#566542' : '#1f301d',
   zIndex: 0,
   opacity: 0.7,
+  [theme.breakpoints.down('sm')]: {
+    width: 80,
+    height: 30,
+    top: 12,
+    left: 18,
+  },
 }));
 
-const ProfileImageModern = styled('img')({
+const ProfileImageModern = styled('img')(({ theme }) => ({
   width: 368,
   height: 368,
   objectFit: 'cover',
@@ -89,7 +105,11 @@ const ProfileImageModern = styled('img')({
   position: 'relative',
   zIndex: 2,
   boxShadow: 'none',
-});
+  [theme.breakpoints.down('sm')]: {
+    width: 180,
+    height: 180,
+  },
+}));
 
 const SocialIcons = styled('div')({
   display: 'flex',
@@ -173,11 +193,9 @@ const About = () => {
               </SocialIcons>
             </Box>
             <AboutText sx={{ color: isLight ? '#222' : theme.palette.text.primary }}>
-              <p>Sou Psicólogo Clínico formado pela Universidade Luterana do Brasil (ULBRA) - Torres/RS, com registro no Conselho Regional de Psicologia do Rio Grande do Sul (CRP 07/42111).</p>
-              <p>Especialista em desenvolvimento infantil pela UNESC.</p>
-              <p>Atuo na área clínica, oferecendo atendimento psicológico individual para adultos, adolescentes e crianças, com foco em questões emocionais, comportamentais e desenvolvimento pessoal.</p>
-              <p>Ofereço um espaço seguro e acolhedor para que você possa explorar suas questões emocionais, desenvolver autoconhecimento e estratégias para lidar com os desafios da vida.</p>
-              <p>Atendimento presencial em Torres/RS e online.</p>
+              <p>Sou psicólogo clínico formado pela Universidade Luterana do Brasil (ULBRA) – Torres/RS, com especialização em desenvolvimento infantil pela UNESC. Atuo no atendimento psicológico individual de adultos, adolescentes e crianças, auxiliando em questões emocionais, comportamentais e no desenvolvimento pessoal.</p>
+              <p>Meu trabalho é pautado em oferecer um espaço seguro, acolhedor e ético, promovendo o autoconhecimento e o desenvolvimento de estratégias para enfrentar os desafios da vida. Realizo atendimentos presenciais em Torres/RS e também online.</p>
+              <p>CRP 07/42111 – Conselho Regional de Psicologia do Rio Grande do Sul</p>
             </AboutText>
           </Grid>
         </Grid>

@@ -90,7 +90,17 @@ const Hero = () => {
         }}
       />
       <HeroContent sx={{ position: 'relative', zIndex: 2 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 2, flexWrap: 'wrap' }}>
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            alignItems: { xs: 'stretch', sm: 'center' }, 
+            justifyContent: 'center', 
+            gap: { xs: 0, sm: 2 }, 
+            mb: 2, 
+            flexDirection: { xs: 'column', sm: 'row' },
+            flexWrap: 'wrap',
+          }}
+        >
           <Typography 
             variant="h2" 
             sx={{ 
@@ -98,22 +108,22 @@ const Hero = () => {
               fontWeight: 800, 
               letterSpacing: 1, 
               fontFamily: 'serif', 
-              mb: 0, 
+              mb: { xs: 1, sm: 0 }, 
               lineHeight: 1,
-              fontSize: { xs: 32, sm: 40, md: 56 },
+              fontSize: { xs: 26, sm: 36, md: 56 },
               textAlign: { xs: 'center', sm: 'center', md: 'center' },
               wordBreak: 'break-word',
             }}
           >
             Cristian Hendler
           </Typography>
-          <CRPBadge>
+          <CRPBadge sx={{ alignSelf: { xs: 'center', sm: 'flex-end' }, mt: { xs: 0, sm: 0.5 } }}>
             <VerifiedIcon sx={{ color: '#a97c50', fontSize: 22, mr: 0.5 }} />
             CRP 07/42111
           </CRPBadge>
         </Box>
-        <Typography sx={{ color: '#566542', fontSize: 22, fontWeight: 500, mb: 4, mt: 2 }}>
-          <Box component="span" sx={{ whiteSpace: 'nowrap' }}>
+        <Typography sx={{ color: '#566542', fontSize: { xs: 16, sm: 20, md: 22 }, fontWeight: 500, mb: 4, mt: 2 }}>
+          <Box component="span" sx={{ whiteSpace: { xs: 'normal', sm: 'nowrap' } }}>
             Atendimento presencial em Torres/RS e online para todo o Brasil.
           </Box>
         </Typography>
@@ -122,27 +132,38 @@ const Hero = () => {
           sx={{
             background: isLight ? '#566542' : theme.palette.primary.main,
             color: isLight ? '#fff' : '#1f301d',
-            fontWeight: 800,
-            fontSize: { xs: 16, sm: 18, md: 22 },
-            px: { xs: 3, sm: 5, md: 7 },
-            py: { xs: 1.5, sm: 2, md: 2.5 },
-            borderRadius: 10,
-            boxShadow: isLight ? '0 8px 32px rgba(86,101,66,0.18)' : '0 8px 32px rgba(86,101,66,0.18)',
+            fontWeight: 700,
+            fontSize: { xs: 15, sm: 18, md: 22 },
+            px: { xs: 2, sm: 5, md: 7 },
+            py: { xs: 1, sm: 1.5, md: 2 },
+            borderRadius: 18,
+            boxShadow: isLight ? '0 4px 16px rgba(86,101,66,0.12)' : '0 4px 16px rgba(86,101,66,0.12)',
             mt: 4,
+            my: { xs: 3, md: 5 },
             letterSpacing: 1,
             transition: 'background 0.2s, transform 0.2s',
             minWidth: 0,
+            width: { xs: '100%', sm: 'auto', md: 420 },
+            maxWidth: { xs: 340, md: 420 },
+            alignSelf: { xs: 'center', sm: 'unset' },
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            mx: { md: 'auto' },
+            '& span': {
+              whiteSpace: { xs: 'normal', md: 'nowrap' },
+            },
             '&:hover': {
               background: isLight ? '#3d472e' : theme.palette.primary.dark,
               transform: 'scale(1.04)',
             },
           }}
-          startIcon={<WhatsAppIcon sx={{ fontSize: { xs: 22, sm: 24, md: 28 } }} />}
           href="https://wa.me/5551996024420?text=Olá! Gostaria de agendar uma consulta."
           target="_blank"
           aria-label="Agende sua consulta pelo WhatsApp"
         >
-          Agende sua consulta agora
+          <span>Agende sua consulta agora</span>
         </Button>
       </HeroContent>
       <LogoDecorativo src={logoCris} alt="Logo PsicoCris" />

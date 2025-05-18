@@ -23,6 +23,12 @@ const FloatingButton = styled('a')(({ theme }) => ({
     transform: 'scale(1.1)',
     boxShadow: '0 6px 16px rgba(0,0,0,0.4)',
   },
+  [theme.breakpoints.down('sm')]: {
+    width: 44,
+    height: 44,
+    bottom: theme.spacing(10),
+    right: theme.spacing(2),
+  },
 }));
 
 const whatsappNumber = '5551996024420';
@@ -36,7 +42,7 @@ const WhatsAppButton: React.FC = () => (
     aria-label="Fale conosco pelo WhatsApp"
     title="Fale conosco pelo WhatsApp"
   >
-    <WhatsAppIcon fontSize="large" />
+    <WhatsAppIcon sx={{ fontSize: { xs: 28, sm: 32, md: 40 } }} />
   </FloatingButton>
 );
 

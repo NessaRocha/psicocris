@@ -1,9 +1,10 @@
-import React from 'react';
-import { Box, Typography, TextField, Button, Paper } from '@mui/material';
+import React, { useState, useRef } from 'react';
+import { Box, Typography, TextField, Button, Paper, Snackbar, Alert } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import emailjs from '@emailjs/browser';
 
 const ContactContainer = styled(Box)(({ theme }) => ({
   padding: '80px 20px',
@@ -43,6 +44,47 @@ const MapBox = styled(Box)(({ theme }) => ({
 const Contact = () => {
   const theme = useTheme();
   const isLight = theme.palette.mode === 'light';
+  const formRef = useRef<HTMLFormElement>(null);
+  const [loading, setLoading] = useState(false);
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+    severity: 'success' as 'success' | 'error'
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+
+    setLoading(true);
+    try {
+      await emailjs.sendForm(
+        'service_x3lie0e',
+        'template_h1b1igg',
+        formRef.current,
+        'abB5VgLGZ-0vlZrd1'
+      );
+
+      setSnackbar({
+        open: true,
+        message: 'Mensagem enviada com sucesso!',
+        severity: 'success'
+      });
+      formRef.current.reset();
+    } catch (error) {
+      setSnackbar({
+        open: true,
+        message: 'Erro ao enviar mensagem. Por favor, tente novamente.',
+        severity: 'error'
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbar(prev => ({ ...prev, open: false }));
+  };
 
   return (
     <ContactContainer id="contact" sx={{ background: `linear-gradient(180deg, ${theme.palette.background.default} 80%, ${theme.palette.background.paper} 100%)` }}>
@@ -69,13 +111,16 @@ const Contact = () => {
           }}
         >
           <StyledPaper elevation={3} sx={{ width: '100%', background: theme.palette.background.paper }}>
-            <form>
+            <form ref={formRef} onSubmit={handleSubmit}>
               <TextField
                 fullWidth
                 label="Nome"
                 variant="outlined"
                 margin="normal"
                 required
+                id="contact-name"
+                name="user_name"
+                autoComplete="name"
                 InputLabelProps={{ style: { color: theme.palette.text.primary } }}
                 InputProps={{ style: { color: theme.palette.text.primary } }}
               />
@@ -86,6 +131,9 @@ const Contact = () => {
                 margin="normal"
                 required
                 type="email"
+                id="contact-email"
+                name="user_email"
+                autoComplete="email"
                 InputLabelProps={{ style: { color: theme.palette.text.primary } }}
                 InputProps={{ style: { color: theme.palette.text.primary } }}
               />
@@ -95,6 +143,9 @@ const Contact = () => {
                 variant="outlined"
                 margin="normal"
                 required
+                id="contact-phone"
+                name="user_phone"
+                autoComplete="tel"
                 InputLabelProps={{ style: { color: theme.palette.text.primary } }}
                 InputProps={{ style: { color: theme.palette.text.primary } }}
               />
@@ -106,14 +157,20 @@ const Contact = () => {
                 required
                 multiline
                 rows={4}
+                id="contact-message"
+                name="message"
+                autoComplete="off"
                 InputLabelProps={{ style: { color: theme.palette.text.primary } }}
                 InputProps={{ style: { color: theme.palette.text.primary } }}
+                inputProps={{ id: 'contact-message', name: 'message' }}
               />
               <Button
                 variant="contained"
                 color="primary"
                 fullWidth
                 size="large"
+                type="submit"
+                disabled={loading}
                 sx={{
                   mt: 2,
                   backgroundColor: theme.palette.primary.main,
@@ -124,7 +181,7 @@ const Contact = () => {
                   },
                 }}
               >
-                Enviar Mensagem
+                {loading ? 'Enviando...' : 'Enviar Mensagem'}
               </Button>
             </form>
           </StyledPaper>
@@ -165,6 +222,16 @@ const Contact = () => {
           </StyledPaper>
         </Box>
       </Box>
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} sx={{ width: '100%' }}>
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </ContactContainer>
   );
 };

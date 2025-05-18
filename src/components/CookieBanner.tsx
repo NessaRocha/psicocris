@@ -1,48 +1,82 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Typography, Slide, Paper } from '@mui/material';
+import { Box, Button, Typography, Link, Paper } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
-const COOKIE_KEY = 'cookieAccepted';
+const CookieBannerContainer = styled(Paper)(({ theme }) => ({
+  position: 'fixed',
+  bottom: 0,
+  left: 0,
+  right: 0,
+  padding: theme.spacing(2),
+  backgroundColor: theme.palette.background.paper,
+  boxShadow: '0 -2px 10px rgba(0,0,0,0.1)',
+  zIndex: 1000,
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing(2),
+  [theme.breakpoints.up('sm')]: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: theme.spacing(3),
+  },
+}));
 
 const CookieBanner = () => {
-  const [open, setOpen] = useState(false);
+  const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
-    const accepted = localStorage.getItem(COOKIE_KEY);
-    if (!accepted) setOpen(true);
+    const hasAcceptedCookies = localStorage.getItem('cookiesAccepted');
+    if (!hasAcceptedCookies) {
+      setShowBanner(true);
+    }
   }, []);
 
   const handleAccept = () => {
-    localStorage.setItem(COOKIE_KEY, 'true');
-    setOpen(false);
+    localStorage.setItem('cookiesAccepted', 'true');
+    setShowBanner(false);
   };
 
+  const handleDecline = () => {
+    localStorage.setItem('cookiesAccepted', 'false');
+    setShowBanner(false);
+  };
+
+  if (!showBanner) return null;
+
   return (
-    <Slide direction="up" in={open} mountOnEnter unmountOnExit>
-      <Paper
-        elevation={6}
-        sx={{
-          position: 'fixed',
-          bottom: 24,
-          left: 0,
-          right: 0,
-          width: '100%',
-          p: { xs: 1.5, sm: 2, md: 3 },
-          zIndex: 3000,
-          background: '#1f301d',
-          color: '#fff',
-          textAlign: 'center',
-        }}
-      >
-        <Typography variant="body2" sx={{ mb: 2, fontSize: { xs: 13, sm: 15 } }}>
-          Este site utiliza cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa <a href="#" style={{ color: '#B7C9A8', textDecoration: 'underline' }}>Política de Privacidade</a>.
+    <CookieBannerContainer>
+      <Box sx={{ flex: 1 }}>
+        <Typography variant="body1" color="text.primary" sx={{ mb: 1 }}>
+          Utilizamos cookies essenciais para garantir o funcionamento adequado do site.
         </Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Button variant="contained" color="success" onClick={handleAccept}>
-            Aceitar
-          </Button>
-        </Box>
-      </Paper>
-    </Slide>
+        <Typography variant="body2" color="text.secondary">
+          Ao continuar navegando, você concorda com nossa{' '}
+          <Link href="/politica-de-privacidade" color="primary" underline="hover">
+            Política de Privacidade
+          </Link>
+          .
+        </Typography>
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, flexShrink: 0 }}>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={handleDecline}
+          sx={{ minWidth: 100 }}
+        >
+          Recusar
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleAccept}
+          sx={{ minWidth: 100 }}
+        >
+          Aceitar
+        </Button>
+      </Box>
+    </CookieBannerContainer>
   );
 };
 

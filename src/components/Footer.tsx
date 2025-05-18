@@ -1,9 +1,83 @@
-import { Box, Typography, Link, IconButton, Grid } from '@mui/material';
+import React from 'react';
+import { Box, Container, Typography, Link, Stack, Grid } from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { useTheme } from '@mui/material/styles';
+
+const FooterContainer = styled(Box)(({ theme }) => ({
+  backgroundColor: '#1f301d',
+  color: '#e9e6e1',
+  padding: theme.spacing(6, 0, 4, 0),
+  position: 'relative',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '4px',
+    background: 'linear-gradient(90deg, #566542 0%, #B7C9A8 100%)',
+  }
+}));
+
+const EmergencyBox = styled(Box)(({ theme }) => ({
+  lineHeight: 1.6,
+  textAlign: 'left',
+  backgroundColor: 'rgba(233, 230, 225, 0.08)',
+  borderRadius: theme.spacing(1),
+  padding: theme.spacing(3, 4),
+  maxWidth: 480,
+  margin: '0 auto',
+  [theme.breakpoints.down('md')]: {
+    textAlign: 'center',
+    marginBottom: theme.spacing(3),
+    padding: theme.spacing(2),
+    maxWidth: '100%',
+  },
+}));
+
+const NavLinks = styled(Stack)(({ theme }) => ({
+  margin: theme.spacing(2, 0),
+  '& a': {
+    color: '#e9e6e1',
+    textDecoration: 'none',
+    fontWeight: 500,
+    transition: 'color 0.2s',
+    '&:hover': {
+      color: '#B7C9A8',
+      textDecoration: 'underline',
+    }
+  },
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: theme.spacing(0.1),
+    margin: theme.spacing(2, 2, 2, 2),
+    '& a': {
+      fontSize: 18,
+      padding: theme.spacing(1, 0),
+      width: '100%',
+      textAlign: 'center',
+      borderRadius: 6,
+    },
+  },
+}));
+
+const Credit = styled(Typography)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  fontSize: '0.8rem',
+  color: 'rgba(233, 230, 225, 0.6)',
+  '& a': {
+    color: 'rgba(233, 230, 225, 0.7)',
+    textDecoration: 'underline',
+    '&:hover': {
+      color: '#e9e6e1',
+    }
+  }
+}));
 
 // SVG customizado para TikTok
 const TikTokIcon = (props: any) => (
@@ -14,65 +88,55 @@ const TikTokIcon = (props: any) => (
 
 const Footer = () => {
   const theme = useTheme();
+
   return (
-    <Box
-      component="footer"
-      sx={{
-        background: '#1f301d',
-        color: '#e9e6e1',
-        py: 4,
-        px: 2,
-        mt: 8,
-        textAlign: { xs: 'center', md: 'left' },
-      }}
-    >
-      <Grid container spacing={4} sx={{ maxWidth: 1200, mx: 'auto' }}>
-        {/* Coluna Esquerda */}
-        <Grid item xs={12} md={6}>
-          <Box sx={{ mb: { xs: 3, md: 0 }, textAlign: 'center' }}>
-            <Typography variant="subtitle2" sx={{ color: '#fff', fontWeight: 700, letterSpacing: 1, mb: 1 }}>
-              INFORMAÇÕES DE EMERGÊNCIA E CRISE
-            </Typography>
-            <Typography sx={{ color: '#fff', mb: 1 }}>
-              Se você ou alguém que você conhece estiver passando por uma emergência ou crise e precisar de ajuda imediata, ligue para o 911 ou vá ao pronto-socorro mais próximo.
-            </Typography>
-            <Box sx={{ display: 'flex', gap: 2, mt: 1, justifyContent: 'center' }}>
-              <IconButton href="https://www.instagram.com/psicocrishendler/" target="_blank" rel="noopener" sx={{ color: '#fff' }} aria-label="Instagram">
-                <InstagramIcon />
-              </IconButton>
-              <IconButton href="https://facebook.com/" target="_blank" rel="noopener" sx={{ color: '#fff' }} aria-label="Facebook">
-                <FacebookIcon />
-              </IconButton>
-              <IconButton href="https://www.linkedin.com/in/cristian-hendler-48983152/" target="_blank" rel="noopener" sx={{ color: '#fff' }} aria-label="LinkedIn">
-                <LinkedInIcon />
-              </IconButton>
-              <IconButton href="https://wa.me/5551996024420" target="_blank" rel="noopener" sx={{ color: '#fff' }} aria-label="WhatsApp">
-                <WhatsAppIcon />
-              </IconButton>
+    <FooterContainer>
+      <Container maxWidth="lg">
+        <Grid container spacing={6} alignItems="center" justifyContent="center">
+          <Grid item xs={12} md={6} sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-end' } }}>
+            <EmergencyBox>
+              <Typography variant="h6" component="strong" sx={{ display: 'block', mb: 1, color: '#e9e6e1' }}>
+                INFORMAÇÕES DE EMERGÊNCIA E CRISE
+              </Typography>
+              <Typography variant="body2" sx={{ mb: 1, color: '#e9e6e1' }}>
+                Se você ou alguém que você conhece estiver passando por uma crise emocional ou situação de emergência,
+              </Typography>
+              <Typography variant="body2" sx={{ mb: 1, color: '#e9e6e1' }}>
+                ligue para o <strong>CVV no 188</strong> (apoio emocional gratuito e sigiloso, 24h por dia).
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#e9e6e1' }}>
+                Em caso de risco à vida, ligue para o <strong>SAMU – 192</strong> ou vá ao pronto-socorro mais próximo.
+              </Typography>
+            </EmergencyBox>
+          </Grid>
+          <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: { xs: 'center', md: 'flex-start' }, height: '100%' }}>
+            <Box sx={{ width: '100%', maxWidth: 420 }}>
+              <Typography variant="h6" sx={{ mb: { xs: 3, md: 2 }, color: '#e9e6e1', fontWeight: 700, textAlign: 'center' }}>
+                Psicólogo Cristian Hendler | CRP 07/42111
+              </Typography>
+              <NavLinks
+                direction={{ xs: 'column', sm: 'row' }}
+                spacing={3}
+                justifyContent={{ xs: 'center', md: 'flex-start' }}
+                divider={typeof window !== 'undefined' && window.innerWidth < 600 ? undefined : <Box sx={{ width: '1px', height: '20px', bgcolor: 'rgba(233, 230, 225, 0.2)' }} />}
+              >
+                <Link href="#inicio" underline="none">Início</Link>
+                <Link href="#sobre" underline="none">Sobre</Link>
+                <Link href="#servicos" underline="none">Serviços</Link>
+                <Link href="#contato" underline="none">Contato</Link>
+              </NavLinks>
+              <Credit align={theme.breakpoints.down('md') ? 'center' : 'left'}>
+                © 2025 Cristian Hendler. Todos os direitos reservados. <br />
+                by <Link href="https://www.linkedin.com/in/vanessarocha" target="_blank" rel="noopener noreferrer">
+                  Vanessa Rocha
+                </Link>
+              </Credit>
             </Box>
-          </Box>
+          </Grid>
         </Grid>
-        {/* Coluna Direita */}
-        <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
-          <Typography variant="subtitle1" sx={{ fontWeight: 700, color: '#e9e6e1' }}>
-            Psicólogo Cristian Hendler &nbsp;|&nbsp; CRP 07/42111
-          </Typography>
-          <Box sx={{ mt: 1, mb: 2 }}>
-            <Link href="#home" color="#e9e6e1" underline="hover" sx={{ mx: 1, fontWeight: 500, background: 'none', backgroundColor: 'transparent' }}>Início</Link>
-            <Link href="#about" color="#e9e6e1" underline="hover" sx={{ mx: 1, fontWeight: 500, background: 'none', backgroundColor: 'transparent' }}>Sobre</Link>
-            <Link href="#services" color="#e9e6e1" underline="hover" sx={{ mx: 1, fontWeight: 500, background: 'none', backgroundColor: 'transparent' }}>Serviços</Link>
-            <Link href="#contact" color="#e9e6e1" underline="hover" sx={{ mx: 1, fontWeight: 500, background: 'none', backgroundColor: 'transparent' }}>Contato</Link>
-          </Box>
-          <Typography variant="body2" sx={{ color: '#e9e6e1', opacity: 0.8 }}>
-            © 2025 Cristian Hendler. Todos os direitos reservados.
-          </Typography>
-          <Typography variant="caption" sx={{ color: '#e9e6e1', opacity: 0.6, display: 'block', textAlign: 'center', mt: 1 }}>
-            by <a href="https://www.instagram.com/vanessarochadeveloper/?next=%2F" target="_blank" rel="noopener noreferrer" style={{ color: '#e9e6e1', opacity: 0.7, textDecoration: 'underline', fontWeight: 500 }}>Vanessa Rocha</a>
-          </Typography>
-        </Grid>
-      </Grid>
-    </Box>
+      </Container>
+    </FooterContainer>
   );
-}
+};
 
 export default Footer; 

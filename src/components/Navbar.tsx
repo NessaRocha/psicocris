@@ -27,6 +27,11 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
   borderBottom: '1.5px solid #4a5737',
   transition: 'none',
   zIndex: 2000,
+  [theme.breakpoints.down('sm')]: {
+    backgroundColor: 'transparent',
+    boxShadow: 'none',
+    borderBottom: 'none',
+  },
 }));
 
 const NavButton = styled(Button)(({ theme }) => ({
@@ -62,7 +67,7 @@ const navLinks = [
   { label: 'Início', href: '#home' },
   { label: 'Serviços', href: '#services' },
   { label: 'Sobre', href: '#about' },
-  { label: 'Contato', href: '#contact' },
+  { label: 'Contato', href: '#contato' },
 ];
 
 // Adicionar tipagem explícita para as props da Navbar
@@ -84,7 +89,9 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
   return (
     <StyledAppBar position="fixed" elevation={0}>
       <Toolbar sx={{ px: { xs: 2, md: 4 } }}>
-        <Logo src={logoCris} alt="Logo PsicoCris" />
+        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+          <Logo src={logoCris} alt="Logo PsicoCris" />
+        </Box>
         <Box sx={{ flexGrow: 1 }} />
         {/* Menu Desktop */}
         <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
@@ -134,13 +141,20 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
           </SocialIcons>
         </Box>
         {/* Menu Mobile */}
-        <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+        <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
+          <IconButton
+            onClick={() => setDarkMode((prev: boolean) => !prev)}
+            color="inherit"
+            aria-label="Alternar modo escuro"
+            sx={{ mr: 1 }}
+          >
+            {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+          </IconButton>
           <IconButton
             edge="end"
             color="inherit"
             aria-label="menu"
             onClick={() => setDrawerOpen(true)}
-            sx={{ ml: 1 }}
           >
             <MenuIcon />
           </IconButton>
@@ -148,54 +162,56 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
             anchor="right"
             open={drawerOpen}
             onClose={() => setDrawerOpen(false)}
-            PaperProps={{ sx: { backgroundColor: '#566542', color: 'white' } }}
+            PaperProps={{ sx: { backgroundColor: '#566542', color: 'white', zIndex: 3001 } }}
           >
-            <List sx={{ width: 220 }}>
-              {navLinks.map((item) => (
-                <ListItem key={item.href} disablePadding>
-                  {item.label === 'Início' ? (
-                    <ListItemButton
-                      onClick={() => {
-                        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-                        setDrawerOpen(false);
-                      }}
+            <Box sx={{ width: 220, p: 2 }}>
+              <List>
+                {navLinks.map((item) => (
+                  <ListItem key={item.href} disablePadding>
+                    {item.label === 'Início' ? (
+                      <ListItemButton
+                        onClick={() => {
+                          window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                          setDrawerOpen(false);
+                        }}
+                      >
+                        <ListItemText primary={item.label} />
+                      </ListItemButton>
+                    ) : (
+                      <ListItemButton component="a" href={item.href} onClick={() => setDrawerOpen(false)}>
+                        <ListItemText primary={item.label} />
+                      </ListItemButton>
+                    )}
+                  </ListItem>
+                ))}
+                <ListItem>
+                  <Box sx={{ display: 'flex', gap: 2 }}>
+                    <a
+                      href="https://www.instagram.com/psicocrishendler/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: '#fff', fontSize: 26, transition: 'color 0.2s' }}
+                      onMouseOver={e => (e.currentTarget.style.color = '#25D366')}
+                      onMouseOut={e => (e.currentTarget.style.color = '#fff')}
+                      aria-label="Instagram"
                     >
-                      <ListItemText primary={item.label} />
-                    </ListItemButton>
-                  ) : (
-                    <ListItemButton component="a" href={item.href} onClick={() => setDrawerOpen(false)}>
-                      <ListItemText primary={item.label} />
-                    </ListItemButton>
-                  )}
+                      <InstagramIcon fontSize="inherit" />
+                    </a>
+                    <a
+                      href="https://wa.me/5551996024420"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: '#fff', fontSize: 26, transition: 'color 0.2s' }}
+                      onMouseOver={e => (e.currentTarget.style.color = '#25D366')}
+                      onMouseOut={e => (e.currentTarget.style.color = '#fff')}
+                      aria-label="WhatsApp"
+                    >
+                      <WhatsAppIcon fontSize="inherit" />
+                    </a>
+                  </Box>
                 </ListItem>
-              ))}
-              <ListItem disablePadding sx={{ justifyContent: 'center', mt: 2 }}>
-                <Box sx={{ display: 'flex', gap: 2 }}>
-                  <a
-                    href="https://www.instagram.com/psicocrishendler/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: '#fff', fontSize: 26, transition: 'color 0.2s' }}
-                    onMouseOver={e => (e.currentTarget.style.color = '#25D366')}
-                    onMouseOut={e => (e.currentTarget.style.color = '#fff')}
-                    aria-label="Instagram"
-                  >
-                    <InstagramIcon fontSize="inherit" />
-                  </a>
-                  <a
-                    href="https://wa.me/5551996024420"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: '#fff', fontSize: 26, transition: 'color 0.2s' }}
-                    onMouseOver={e => (e.currentTarget.style.color = '#25D366')}
-                    onMouseOut={e => (e.currentTarget.style.color = '#fff')}
-                    aria-label="WhatsApp"
-                  >
-                    <WhatsAppIcon fontSize="inherit" />
-                  </a>
-                </Box>
-              </ListItem>
-            </List>
+              </List>
+            </Box>
           </Drawer>
         </Box>
       </Toolbar>

@@ -7,7 +7,6 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
 import InstagramFeed from './components/InstagramFeed';
-import Contact from './components/Contact';
 import WhatsAppButton from './components/WhatsAppButton';
 import IndividualTherapy from './pages/IndividualTherapy';
 import YouthTherapy from './pages/YouthTherapy';
@@ -18,6 +17,8 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import './App.css';
 import CookieBanner from './components/CookieBanner';
+import Contact from './components/Contact';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 const lightTheme = createTheme({
   palette: {
@@ -88,6 +89,7 @@ function App() {
             <Route path="/individual-therapy" element={<IndividualTherapy />} />
             <Route path="/youth-therapy" element={<YouthTherapy />} />
             <Route path="/child-therapy" element={<ChildTherapy />} />
+            <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
           </Routes>
         </div>
       </Router>
@@ -97,3 +99,5 @@ function App() {
 }
 
 export default App;
+export {};
+ 
