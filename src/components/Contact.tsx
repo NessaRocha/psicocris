@@ -4,7 +4,6 @@ import { styled, useTheme } from '@mui/material/styles';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import emailjs from '@emailjs/browser';
 
 const ContactContainer = styled(Box)(({ theme }) => ({
   padding: '80px 20px',
@@ -57,25 +56,34 @@ const Contact = () => {
     if (!formRef.current) return;
 
     setLoading(true);
+    const formData = new FormData(formRef.current);
     try {
-      await emailjs.sendForm(
-        'service_x3lie0e',
-        'template_h1b1igg',
-        formRef.current,
-        'abB5VgLGZ-0vlZrd1'
-      );
-
-      setSnackbar({
-        open: true,
-        message: 'Mensagem enviada com sucesso!',
-        severity: 'success'
+      const response = await fetch('https://formspree.io/f/xnndrqpo', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json',
+        },
       });
-      formRef.current.reset();
+      if (response.ok) {
+        setSnackbar({
+          open: true,
+          message: 'Mensagem enviada com sucesso!',
+          severity: 'success',
+        });
+        formRef.current.reset();
+      } else {
+        setSnackbar({
+          open: true,
+          message: 'Erro ao enviar mensagem. Por favor, tente novamente.',
+          severity: 'error',
+        });
+      }
     } catch (error) {
       setSnackbar({
         open: true,
         message: 'Erro ao enviar mensagem. Por favor, tente novamente.',
-        severity: 'error'
+        severity: 'error',
       });
     } finally {
       setLoading(false);

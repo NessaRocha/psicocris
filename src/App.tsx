@@ -19,6 +19,7 @@ import './App.css';
 import CookieBanner from './components/CookieBanner';
 import Contact from './components/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import { Helmet } from 'react-helmet';
 
 const lightTheme = createTheme({
   palette: {
@@ -53,6 +54,12 @@ const darkTheme = createTheme({
 function Home({ darkMode, setDarkMode }: { darkMode: boolean; setDarkMode: React.Dispatch<React.SetStateAction<boolean>> }) {
   return (
     <>
+      <Helmet>
+        <title>Cris Hendler Psicólogo (@crishendlerpsico) | Torres RS</title>
+        <meta name="description" content="Cris Hendler Psicólogo (@crishendlerpsico) - Atendimento psicológico presencial e online em Torres RS. Especialista em terapia para adultos, adolescentes e crianças." />
+        <meta name="keywords" content="crishendlerpsico, cris hendler psicologo, psicologo cris hendler, psicologo em torres rs, psicologo online torres, psicologo cris, psicologo torres rs, psicologo cristian hendler" />
+        <link rel="canonical" href="https://crispsicologo.com.br/" />
+      </Helmet>
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
       <main>
         <Hero />
@@ -86,9 +93,10 @@ function App() {
         <div className="App">
           <Routes>
             <Route path="/" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />
-            <Route path="/individual-therapy" element={<IndividualTherapy />} />
-            <Route path="/youth-therapy" element={<YouthTherapy />} />
-            <Route path="/child-therapy" element={<ChildTherapy />} />
+            <Route path="/sobre" element={<About />} />
+            <Route path="/terapia-para-adultos" element={<IndividualTherapy />} />
+            <Route path="/terapia-adolescentes" element={<YouthTherapy />} />
+            <Route path="/psicoterapia-infantil" element={<ChildTherapy />} />
             <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
           </Routes>
         </div>

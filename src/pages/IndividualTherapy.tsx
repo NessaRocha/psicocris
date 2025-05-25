@@ -22,12 +22,12 @@ const NoBulletList = styled('ul')({
   textAlign: 'center',
 });
 
-const TerapiaIndividual = () => {
+const IndividualTherapy: React.FC = () => {
   return (
     <PageContainer>
       <Container maxWidth="lg">
         <Typography variant="h3" component="h1" gutterBottom align="center" sx={{ color: '#1B5E20' }}>
-          Psicoterapia Individual
+          Terapia para Adultos
         </Typography>
         <StyledPaper elevation={0}>
           <Typography variant="h5" gutterBottom sx={{ color: '#2E7D32' }}>
@@ -80,4 +80,4 @@ const TerapiaIndividual = () => {
   );
 };
 
-export default TerapiaIndividual; 
+export default IndividualTherapy; 

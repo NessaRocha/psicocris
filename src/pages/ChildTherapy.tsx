@@ -22,12 +22,12 @@ const NoBulletList = styled('ul')({
   textAlign: 'center',
 });
 
-const ChildTherapy = () => {
+const ChildTherapy: React.FC = () => {
   return (
     <PageContainer>
       <Container maxWidth="lg">
         <Typography variant="h3" component="h1" gutterBottom align="center" sx={{ color: '#1B5E20' }}>
-          Psicologia Infantil
+          Psicoterapia Infantil
         </Typography>
         <StyledPaper elevation={0}>
           <Typography variant="h5" gutterBottom sx={{ color: '#2E7D32' }}>

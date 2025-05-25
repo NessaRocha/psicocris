@@ -13,10 +13,12 @@ const ServicesContainer = styled(Box)(({ theme }) => ({
 }));
 
 const StyledCard = styled(Card)(({ theme }) => ({
+  minHeight: 420,
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  justifyContent: 'space-between',
   padding: '20px',
   transition: 'transform 0.3s ease-in-out',
   '&:hover': {
@@ -59,7 +61,9 @@ const Services = () => {
       details: [
         'Tratamento personalizado',
         'Desenvolvimento de estratégias de enfrentamento',
-        'Acompanhamento contínuo'
+        'Acompanhamento contínuo',
+        'Promoção do autoconhecimento',
+        'Apoio emocional e motivacional'
       ],
       link: '/individual-therapy'
     },
@@ -68,10 +72,11 @@ const Services = () => {
       title: 'Terapia para Jovens',
       description: 'Apoio emocional para enfrentar desafios da adolescência.',
       details: [
-        'Avaliação do desenvolvimento',
+        'Suporte em transições de fase de vida',
         'Gestão de emoções',
         'Desenvolvimento de habilidades sociais',
-        'Apoio familiar'
+        'Apoio familiar',
+        'Promoção do autoconhecimento'
       ],
       link: '/youth-therapy'
     },

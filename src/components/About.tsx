@@ -4,7 +4,8 @@ import { styled, useTheme } from '@mui/material/styles';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import BannerImage from '../assets/bannerr.png';
+import BannerImagePng from '../assets/bannerr.png';
+import BannerImageWebp from '../assets/bannerr.webp';
 
 const AboutContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -144,7 +145,10 @@ const About = () => {
               <ImageWrapper>
                 <GeometricDetail />
                 <GeometricDetail2 />
-                <ProfileImageModern src={BannerImage} alt="Psicólogo Cristian Hendler" />
+                <picture>
+                  <source srcSet={BannerImageWebp} type="image/webp" />
+                  <ProfileImageModern src={BannerImagePng} alt="Psicólogo Cristian Hendler" width={368} height={368} />
+                </picture>
               </ImageWrapper>
             </Slide>
           </Grid>

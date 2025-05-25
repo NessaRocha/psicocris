@@ -118,7 +118,7 @@ const Footer = () => {
                 direction={{ xs: 'column', sm: 'row' }}
                 spacing={3}
                 justifyContent={{ xs: 'center', md: 'flex-start' }}
-                divider={typeof window !== 'undefined' && window.innerWidth < 600 ? undefined : <Box sx={{ width: '1px', height: '20px', bgcolor: 'rgba(233, 230, 225, 0.2)' }} />}
+                divider={typeof window !== 'undefined' && window.innerWidth >= 600 ? <Box sx={{ width: '1px', height: '20px', bgcolor: 'rgba(233, 230, 225, 0.2)' }} /> : undefined}
               >
                 <Link href="#inicio" underline="none">Início</Link>
                 <Link href="#sobre" underline="none">Sobre</Link>
@@ -127,7 +127,7 @@ const Footer = () => {
               </NavLinks>
               <Credit align={theme.breakpoints.down('md') ? 'center' : 'left'}>
                 © 2025 Cristian Hendler. Todos os direitos reservados. <br />
-                by <Link href="https://www.linkedin.com/in/vanessarocha" target="_blank" rel="noopener noreferrer">
+                by <Link href="https://www.linkedin.com/in/vanessa-rocha86/" target="_blank" rel="noopener noreferrer">
                   Vanessa Rocha
                 </Link>
               </Credit>

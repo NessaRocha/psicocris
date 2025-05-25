@@ -90,7 +90,10 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
     <StyledAppBar position="fixed" elevation={0}>
       <Toolbar sx={{ px: { xs: 2, md: 4 } }}>
         <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-          <Logo src={logoCris} alt="Logo PsicoCris" />
+          <picture>
+            <source srcSet={require('../assets/logoCris.webp')} type="image/webp" />
+            <img src={logoCris} alt="Logo PsicoCris" width={64} height={64} />
+          </picture>
         </Box>
         <Box sx={{ flexGrow: 1 }} />
         {/* Menu Desktop */}

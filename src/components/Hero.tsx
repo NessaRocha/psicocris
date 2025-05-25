@@ -4,7 +4,8 @@ import { styled, useTheme } from '@mui/material/styles';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import logoCris from '../assets/logoCris.svg';
 import VerifiedIcon from '@mui/icons-material/Verified';
-import heroBg from '../assets/hero-bg.jpg';
+import heroBgWebp from '../assets/hero-bg.webp';
+import heroBgJpg from '../assets/hero-bg.jpg';
 
 const HeroSection = styled(Box)(({ theme }) => ({
   background: '#566542',
@@ -72,10 +73,11 @@ const LogoDecorativo = styled('img')(({ theme }) => ({
 const Hero = () => {
   const theme = useTheme();
   const isLight = theme.palette.mode === 'light';
+  const bgImage = `url(${heroBgWebp}), url(${heroBgJpg})`;
   return (
     <HeroSection sx={{ 
       background: isLight ? '#dbe5ce' : '#1f301d',
-      backgroundImage: `url(${heroBg})`,
+      backgroundImage: bgImage,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}>
@@ -166,7 +168,10 @@ const Hero = () => {
           <span>Agende sua consulta agora</span>
         </Button>
       </HeroContent>
-      <LogoDecorativo src={logoCris} alt="Logo PsicoCris" />
+      <picture>
+        <source srcSet={require('../assets/logoCris.webp')} type="image/webp" />
+        <LogoDecorativo src={logoCris} alt="Logo PsicoCris" width={220} height={220} />
+      </picture>
       <svg viewBox="0 0 1440 180" width="100%" height="100" style={{ display: 'block', position: 'absolute', left: 0, bottom: 0, zIndex: 2 }} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
         <path d="M0,80 C360,180 1080,0 1440,100 L1440,180 L0,180 Z" fill={isLight ? '#f5f5f5' : '#1f301d'} />
       </svg>
