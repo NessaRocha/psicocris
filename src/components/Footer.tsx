@@ -130,6 +130,12 @@ const Footer = () => {
                 by <Link href="https://www.linkedin.com/in/vanessa-rocha86/" target="_blank" rel="noopener noreferrer">
                   Vanessa Rocha
                 </Link>
+                <span style={{ marginLeft: 8, fontSize: 10, opacity: 0.4 }}>
+                  |
+                  <Link href="/admin" underline="none" sx={{ fontSize: 10, color: '#e9e6e1', opacity: 0.4, ml: 0.5, '&:hover': { opacity: 1, color: '#B7C9A8' } }}>
+                    Área restrita
+                  </Link>
+                </span>
               </Credit>
             </Box>
           </Grid>

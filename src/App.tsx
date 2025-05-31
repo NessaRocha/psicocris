@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -20,6 +20,14 @@ import CookieBanner from './components/CookieBanner';
 import Contact from './components/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import { Helmet } from 'react-helmet';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
+import ProtectedRoute from './components/ProtectedRoute';
+import AdminPanel from './components/AdminPanel';
+import { SnackbarProvider } from './hooks/useSnackbar';
+import PatientSelfRegister from './pages/PatientSelfRegister';
 
 const lightTheme = createTheme({
   palette: {
@@ -74,35 +82,76 @@ function Home({ darkMode, setDarkMode }: { darkMode: boolean; setDarkMode: React
   );
 }
 
+// Componente para mostrar botão de login oculto
+const HiddenLoginButton = () => {
+  const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'l') {
+        setShow(true);
+        setTimeout(() => setShow(false), 10000); // Esconde após 10s
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  if (!show) return null;
+  return (
+    <button
+      onClick={() => navigate('/admin')}
+      className="fixed bottom-8 right-8 bg-gray-700 text-white px-4 py-2 rounded shadow-lg z-50"
+      style={{ opacity: 0.85 }}
+    >
+      Login Admin
+    </button>
+  );
+};
+
 function App() {
   const [darkMode, setDarkMode] = useState(false);
   const theme = useMemo(() => (darkMode ? darkTheme : lightTheme), [darkMode]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <IconButton
-        sx={{ position: 'fixed', top: 16, right: 16, zIndex: 3000 }}
-        onClick={() => setDarkMode((prev) => !prev)}
-        color="inherit"
-        aria-label="Alternar modo escuro"
-      >
-        {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-      </IconButton>
-      <Router>
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />
-            <Route path="/sobre" element={<About />} />
-            <Route path="/terapia-para-adultos" element={<IndividualTherapy />} />
-            <Route path="/terapia-adolescentes" element={<YouthTherapy />} />
-            <Route path="/psicoterapia-infantil" element={<ChildTherapy />} />
-            <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
-          </Routes>
-        </div>
-      </Router>
-      <CookieBanner />
-    </ThemeProvider>
+    <SnackbarProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <IconButton
+          sx={{ position: 'fixed', top: 16, right: 16, zIndex: 3000 }}
+          onClick={() => setDarkMode((prev) => !prev)}
+          color="inherit"
+          aria-label="Alternar modo escuro"
+        >
+          {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+        </IconButton>
+        <Router>
+          <div className="App">
+            <HiddenLoginButton />
+            <Routes>
+              <Route path="/" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />
+              <Route path="/sobre" element={<About />} />
+              <Route path="/terapia-para-adultos" element={<IndividualTherapy />} />
+              <Route path="/terapia-adolescentes" element={<YouthTherapy />} />
+              <Route path="/psicoterapia-infantil" element={<ChildTherapy />} />
+              <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/admin" element={
+                <ProtectedRoute>
+                  <AdminPanel />
+                </ProtectedRoute>
+              } />
+              <Route path="/cadastro-paciente" element={<PatientSelfRegister />} />
+            </Routes>
+          </div>
+        </Router>
+        <CookieBanner />
+      </ThemeProvider>
+    </SnackbarProvider>
   );
 }
 

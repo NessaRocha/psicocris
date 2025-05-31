@@ -18,7 +18,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { styled, useTheme } from '@mui/material/styles';
-import logoCris from '../assets/logoCris.svg';
+import logoCris from '../assets/logoCris.webp';
 
 // Styled AppBar com prop interna $elevate
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
@@ -35,16 +35,18 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
 }));
 
 const NavButton = styled(Button)(({ theme }) => ({
-  color: theme.palette.mode === 'dark' ? '#B7C9A8' : '#566542',
+  color: '#f5f5f5',
   margin: '0 10px',
-  fontWeight: 500,
+  fontWeight: 600,
   letterSpacing: 1,
   borderBottom: '2.5px solid transparent',
   borderRadius: 0,
   backgroundColor: 'transparent',
+  textShadow: '0 1px 4px rgba(0,0,0,0.15)',
   transition: 'background 0.2s, color 0.2s, border-bottom 0.2s',
   '&:hover': {
     backgroundColor: 'rgba(86,101,66,0.10)',
+    color: '#B7C9A8',
     textDecoration: 'underline',
     textUnderlineOffset: '6px',
   },
@@ -88,12 +90,28 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
 
   return (
     <StyledAppBar position="fixed" elevation={0}>
-      <Toolbar sx={{ px: { xs: 2, md: 4 } }}>
+      <Toolbar sx={{ px: { xs: 2, md: 4 }, width: '100%' }}>
         <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-          <picture>
-            <source srcSet={require('../assets/logoCris.webp')} type="image/webp" />
-            <img src={logoCris} alt="Logo PsicoCris" width={64} height={64} />
-          </picture>
+          <Box
+            sx={{
+              background: '#f5f5f5',
+              borderRadius: '50%',
+              padding: '6px',
+              display: 'inline-block',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.10)',
+            }}
+          >
+            <picture>
+              <source srcSet={require('../assets/logoCris.webp')} type="image/webp" />
+              <img
+                src={logoCris}
+                alt="Logo PsicoCris"
+                width={64}
+                height={64}
+                style={{ display: 'block' }}
+              />
+            </picture>
+          </Box>
         </Box>
         <Box sx={{ flexGrow: 1 }} />
         {/* Menu Desktop */}
@@ -144,79 +162,87 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
           </SocialIcons>
         </Box>
         {/* Menu Mobile */}
-        <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
+        <Box
+          sx={{
+            display: { xs: 'flex', md: 'none' },
+            alignItems: 'center',
+            width: '100vw',
+            justifyContent: 'space-between',
+            px: 2,
+            minHeight: 64,
+          }}
+        >
           <IconButton
-            onClick={() => setDarkMode((prev: boolean) => !prev)}
-            color="inherit"
-            aria-label="Alternar modo escuro"
-            sx={{ mr: 1 }}
-          >
-            {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-          </IconButton>
-          <IconButton
-            edge="end"
             color="inherit"
             aria-label="menu"
             onClick={() => setDrawerOpen(true)}
           >
             <MenuIcon />
           </IconButton>
-          <Drawer
-            anchor="right"
-            open={drawerOpen}
-            onClose={() => setDrawerOpen(false)}
-            PaperProps={{ sx: { backgroundColor: '#566542', color: 'white', zIndex: 3001 } }}
+          <Box sx={{ flex: 1 }} />
+          <IconButton
+            onClick={() => setDarkMode((prev: boolean) => !prev)}
+            color="inherit"
+            aria-label="Alternar modo escuro"
           >
-            <Box sx={{ width: 220, p: 2 }}>
-              <List>
-                {navLinks.map((item) => (
-                  <ListItem key={item.href} disablePadding>
-                    {item.label === 'Início' ? (
-                      <ListItemButton
-                        onClick={() => {
-                          window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-                          setDrawerOpen(false);
-                        }}
-                      >
-                        <ListItemText primary={item.label} />
-                      </ListItemButton>
-                    ) : (
-                      <ListItemButton component="a" href={item.href} onClick={() => setDrawerOpen(false)}>
-                        <ListItemText primary={item.label} />
-                      </ListItemButton>
-                    )}
-                  </ListItem>
-                ))}
-                <ListItem>
-                  <Box sx={{ display: 'flex', gap: 2 }}>
-                    <a
-                      href="https://www.instagram.com/psicocrishendler/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ color: '#fff', fontSize: 26, transition: 'color 0.2s' }}
-                      onMouseOver={e => (e.currentTarget.style.color = '#25D366')}
-                      onMouseOut={e => (e.currentTarget.style.color = '#fff')}
-                      aria-label="Instagram"
-                    >
-                      <InstagramIcon fontSize="inherit" />
-                    </a>
-                    <a
-                      href="https://wa.me/5551996024420"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ color: '#fff', fontSize: 26, transition: 'color 0.2s' }}
-                      onMouseOver={e => (e.currentTarget.style.color = '#25D366')}
-                      onMouseOut={e => (e.currentTarget.style.color = '#fff')}
-                      aria-label="WhatsApp"
-                    >
-                      <WhatsAppIcon fontSize="inherit" />
-                    </a>
-                  </Box>
-                </ListItem>
-              </List>
-            </Box>
-          </Drawer>
+            {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+          </IconButton>
         </Box>
+        <Drawer
+          anchor="right"
+          open={drawerOpen}
+          onClose={() => setDrawerOpen(false)}
+          PaperProps={{ sx: { backgroundColor: '#566542', color: 'white', zIndex: 3001 } }}
+        >
+          <Box sx={{ width: 220, p: 2 }}>
+            <List>
+              {navLinks.map((item) => (
+                <ListItem key={item.href} disablePadding>
+                  {item.label === 'Início' ? (
+                    <ListItemButton
+                      onClick={() => {
+                        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                        setDrawerOpen(false);
+                      }}
+                    >
+                      <ListItemText primary={item.label} />
+                    </ListItemButton>
+                  ) : (
+                    <ListItemButton component="a" href={item.href} onClick={() => setDrawerOpen(false)}>
+                      <ListItemText primary={item.label} />
+                    </ListItemButton>
+                  )}
+                </ListItem>
+              ))}
+              <ListItem>
+                <Box sx={{ display: 'flex', gap: 2 }}>
+                  <a
+                    href="https://www.instagram.com/psicocrishendler/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: '#fff', fontSize: 26, transition: 'color 0.2s' }}
+                    onMouseOver={e => (e.currentTarget.style.color = '#25D366')}
+                    onMouseOut={e => (e.currentTarget.style.color = '#fff')}
+                    aria-label="Instagram"
+                  >
+                    <InstagramIcon fontSize="inherit" />
+                  </a>
+                  <a
+                    href="https://wa.me/5551996024420"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: '#fff', fontSize: 26, transition: 'color 0.2s' }}
+                    onMouseOver={e => (e.currentTarget.style.color = '#25D366')}
+                    onMouseOut={e => (e.currentTarget.style.color = '#fff')}
+                    aria-label="WhatsApp"
+                  >
+                    <WhatsAppIcon fontSize="inherit" />
+                  </a>
+                </Box>
+              </ListItem>
+            </List>
+          </Box>
+        </Drawer>
       </Toolbar>
     </StyledAppBar>
   );

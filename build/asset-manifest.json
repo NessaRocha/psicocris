@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5e9b6622.css",
+    "main.js": "/static/js/main.de76a582.js",
+    "static/js/453.2a449ab3.chunk.js": "/static/js/453.2a449ab3.chunk.js",
+    "static/media/hero-bg.webp": "/static/media/hero-bg.8fca5ffa3aeee6ba7f76.webp",
+    "static/media/logoCris.webp": "/static/media/logoCris.8eba1e63ad38157f77bb.webp",
+    "static/media/bannerr.webp": "/static/media/bannerr.17c58383276938598274.webp",
+    "index.html": "/index.html",
+    "main.5e9b6622.css.map": "/static/css/main.5e9b6622.css.map",
+    "main.de76a582.js.map": "/static/js/main.de76a582.js.map",
+    "453.2a449ab3.chunk.js.map": "/static/js/453.2a449ab3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5e9b6622.css",
+    "static/js/main.de76a582.js"
+  ]
+}

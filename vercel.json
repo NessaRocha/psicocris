@@ -1,10 +1,38 @@
 {
-  "redirects": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.crispsicologo.com.br" }],
-      "destination": "https://crispsicologo.com.br/:path*",
-      "permanent": true
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "/favicon.ico"
+    },
+    {
+      "src": "/manifest.json",
+      "dest": "/manifest.json"
+    },
+    {
+      "src": "/logo192.png",
+      "dest": "/logo192.png"
+    },
+    {
+      "src": "/logo512.png",
+      "dest": "/logo512.png"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 } 

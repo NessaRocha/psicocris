@@ -4,7 +4,6 @@ import { styled, useTheme } from '@mui/material/styles';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import BannerImagePng from '../assets/bannerr.png';
 import BannerImageWebp from '../assets/bannerr.webp';
 
 const AboutContainer = styled(Box)(({ theme }) => ({
@@ -147,7 +146,7 @@ const About = () => {
                 <GeometricDetail2 />
                 <picture>
                   <source srcSet={BannerImageWebp} type="image/webp" />
-                  <ProfileImageModern src={BannerImagePng} alt="Psicólogo Cristian Hendler" width={368} height={368} />
+                  <ProfileImageModern src={BannerImageWebp} alt="Psicólogo Cristian Hendler" width={368} height={368} />
                 </picture>
               </ImageWrapper>
             </Slide>
