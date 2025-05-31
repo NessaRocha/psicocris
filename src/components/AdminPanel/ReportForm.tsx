@@ -26,6 +26,8 @@ const ReportForm: React.FC<ReportFormProps> = ({ patient, onClose }) => {
   const [actionError, setActionError] = useState('');
   const [decryptingReportId, setDecryptingReportId] = useState<string | null>(null);
   const [decryptError, setDecryptError] = useState('');
+  const [decryptKey, setDecryptKey] = useState('');
+  const [decryptedData, setDecryptedData] = useState<any>(null);
 
   const today = new Date().toLocaleString();
 

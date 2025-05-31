@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Typography, Container, Grid, IconButton, Link, Fade, Slide } from '@mui/material';
-import { styled, useTheme } from '@mui/material/styles';
+import { Box, Typography, Container, Paper } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';

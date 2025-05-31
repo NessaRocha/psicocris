@@ -1,23 +1,18 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
-import InstagramFeed from './components/InstagramFeed';
-import WhatsAppButton from './components/WhatsAppButton';
-import IndividualTherapy from './pages/IndividualTherapy';
-import YouthTherapy from './pages/YouthTherapy';
-import ChildTherapy from './pages/ChildTherapy';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 import IconButton from '@mui/material/IconButton';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import './App.css';
 import CookieBanner from './components/CookieBanner';
-import Contact from './components/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import { Helmet } from 'react-helmet';
 import Login from './pages/Login';
@@ -73,10 +68,8 @@ function Home({ darkMode, setDarkMode }: { darkMode: boolean; setDarkMode: React
         <Hero />
         <About />
         <Services />
-        {/* <InstagramFeed /> */}
         <Contact />
       </main>
-      <WhatsAppButton />
       <Footer />
     </>
   );

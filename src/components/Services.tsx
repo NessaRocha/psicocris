@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { Box, Typography, Card, CardContent, Collapse, IconButton, Button } from '@mui/material';
-import { styled, useTheme } from '@mui/material/styles';
+import React from 'react';
+import { Box, Typography, Container, Grid, Paper } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { Card, CardContent, Collapse, IconButton, Button } from '@mui/material';
 import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 import Diversity3Icon from '@mui/icons-material/Diversity3';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
@@ -50,9 +51,6 @@ const ExpandButton = styled(IconButton)(({ theme }) => ({
 }));
 
 const Services = () => {
-  const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
-
   const services = [
     {
       icon: <SelfImprovementIcon sx={{ fontSize: 36, color: '#566542' }} />,

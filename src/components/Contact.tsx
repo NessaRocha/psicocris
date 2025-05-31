@@ -42,13 +42,17 @@ const MapBox = styled(Box)(({ theme }) => ({
 
 const Contact = () => {
   const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: '',
     severity: 'success' as 'success' | 'error'
+  });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
